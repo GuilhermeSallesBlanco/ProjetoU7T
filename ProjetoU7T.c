@@ -10,6 +10,8 @@
 #include "hardware/pwm.h"
 #include "ssd1306_i2c.h"
 
+#define count_of(arr) (sizeof(arr) / sizeof((arr)[0])) 
+
 #define I2C_SDA_OLED 14 // GP14 (SDA do OLED)
 #define I2C_SCL_OLED 15 // GP15 (SCL do OLED)
 
@@ -17,15 +19,80 @@
 #define LED_PIN 13   // GP13 (Saída PWM de teste (LED RGB))
 #define ADC_THRESHOLD 200 // Valor para ignorar o ruído do ADC
 
-char** outputOLED(){
-    static char *text[] = {
-        "   Volume do Buzzer:  ",
-        " X X X X _ ",
-        " A +    B -",};
-    return text;
+volatile static uint16_t valorA = 5;
+volatile static uint16_t valorB = 0;
+
+typedef struct {
+    char **text;
+    size_t lines;
+} OLEDText; // Criando uma nova estrutura para os textos do OLED
+
+OLEDText outputOLED(uint16_t botaoA, uint16_t botaoB) { // Função que retorna um texto para ser exibido no OLED
+    if(botaoA == 0 && botaoB == 5){
+        static char *text[] = {
+            "Volume Buzzer:",
+            "- - - - - ",
+            "AUMENTAR A",  
+            "DIMINUIR B",
+        };
+        OLEDText oledText = { text, sizeof(text) / sizeof(text[0]) };
+        return oledText;
+    } else if(botaoA == 1 && botaoB == 4){
+        static char *text[] = {
+            "Volume Buzzer:",
+            "X - - - - ",
+            "AUMENTAR A",  
+            "DIMINUIR B",
+        };
+        OLEDText oledText = { text, sizeof(text) / sizeof(text[0]) };
+        return oledText;
+    } else if(botaoA == 2 && botaoB == 3){
+        static char *text[] = {
+            "Volume Buzzer:",
+            "X X - - - ",
+            "AUMENTAR A",  
+            "DIMINUIR B",
+        };
+        OLEDText oledText = { text, sizeof(text) / sizeof(text[0]) };
+        return oledText;
+    } else if(botaoA == 3 && botaoB == 2){
+        static char *text[] = {
+            "Volume Buzzer:",
+            "X X X - - ",
+            "AUMENTAR A",  
+            "DIMINUIR B",
+        };
+        OLEDText oledText = { text, sizeof(text) / sizeof(text[0]) };
+        return oledText; 
+    } else if(botaoA == 4 && botaoB == 1){
+        static char *text[] = {
+            "Volume Buzzer:",
+            "X X X X - ",
+            "AUMENTAR A",  
+            "DIMINUIR B",
+        };
+        OLEDText oledText = { text, sizeof(text) / sizeof(text[0]) };
+        return oledText;
+    } else if(botaoA == 5 && botaoB == 0){
+        static char *text[] = {
+            "Volume Buzzer:",
+            "X X X X X ",
+            "AUMENTAR A",  
+            "DIMINUIR B",
+        };
+        OLEDText oledText = { text, sizeof(text) / sizeof(text[0]) };
+        return oledText;
+    }
 }
 
-void setupI2C(){ // Fazendo a configuração do I2C para o OLED
+void updateOLED(){
+    OLEDText oledText = outputOLED(valorA, valorB);
+    char **text = oledText.text;
+    size_t lines = oledText.lines;
+}
+
+void setupI2C() { 
+    // Fazendo a configuração do I2C para o OLED (baseado no código de exemplo do Github)
     i2c_init(i2c1, SSD1306_I2C_CLK * 1000);
     gpio_set_function(I2C_SDA_OLED, GPIO_FUNC_I2C);
     gpio_set_function(I2C_SCL_OLED, GPIO_FUNC_I2C);
@@ -52,11 +119,12 @@ void setupI2C(){ // Fazendo a configuração do I2C para o OLED
     sleep_ms(5000);
     SSD1306_scroll(false);
 
-    char **text = outputOLED();
+    OLEDText oledText = outputOLED(valorA, valorB);
+    char **text = oledText.text;
+    size_t lines = oledText.lines;
 
     int y = 0;
-    for (uint i = 0; i < count_of(text); i++)
-    {
+    for (size_t i = 0; i < lines; i++) {
         WriteString(buf, 5, y, text[i]);
         y += 8;
     }
