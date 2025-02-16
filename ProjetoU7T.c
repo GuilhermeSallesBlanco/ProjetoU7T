@@ -19,10 +19,9 @@
 
 char** outputOLED(){
     static char *text[] = {
-        "   Bem-Vindo ",
-        " ao EmbarcaTech ",
-        "      2024 ",
-        "  SOFTEX/MCTI "};
+        "   Volume do Buzzer:  ",
+        " X X X X _ ",
+        " A +    B -",};
     return text;
 }
 
