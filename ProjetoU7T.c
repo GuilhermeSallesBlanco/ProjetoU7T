@@ -12,7 +12,6 @@ void setup() {
     adc_init();
     adc_gpio_init(IN_PIN);  // Inicializa o ADC no GP28
     adc_select_input(2);    // Seleciona o ADC2 para o GP28
-
     gpio_set_function(LED_PIN, GPIO_FUNC_PWM); // Configura o pino do LED RGB (de teste) para PWM
     uint slice_num = pwm_gpio_to_slice_num(LED_PIN);
     pwm_set_wrap(slice_num, 255);  
