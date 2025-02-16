@@ -8,6 +8,7 @@
 #include "hardware/i2c.h"
 #include "hardware/adc.h"
 #include "hardware/pwm.h"
+#include "ssd1306_i2c.h"
 
 #define I2C_SDA_OLED 14 // GP14 (SDA do OLED)
 #define I2C_SCL_OLED 15 // GP15 (SCL do OLED)
@@ -15,6 +16,15 @@
 #define IN_PIN 28    // GP28 (ADC2)
 #define LED_PIN 13   // GP13 (Saída PWM de teste (LED RGB))
 #define ADC_THRESHOLD 200 // Valor para ignorar o ruído do ADC
+
+char** outputOLED(){
+    static char *text[] = {
+        "   Bem-Vindo ",
+        " ao EmbarcaTech ",
+        "      2024 ",
+        "  SOFTEX/MCTI "};
+    return text;
+}
 
 void setupI2C(){ // Fazendo a configuração do I2C para o OLED
     i2c_init(i2c1, SSD1306_I2C_CLK * 1000);
@@ -43,7 +53,7 @@ void setupI2C(){ // Fazendo a configuração do I2C para o OLED
     sleep_ms(5000);
     SSD1306_scroll(false);
 
-    char **text[] = outputOLED();
+    char **text = outputOLED();
 
     int y = 0;
     for (uint i = 0; i < count_of(text); i++)
@@ -67,15 +77,6 @@ void setup() {
 
 void outputMatriz(){
 
-}
-
-char** outputOLED(){
-    static char *text[] = {
-        "   Bem-Vindo ",
-        " ao EmbarcaTech ",
-        "      2024 ",
-        "  SOFTEX/MCTI "};
-    return text;
 }
 
 void pwmBuzzer(){

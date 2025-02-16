@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(ProjetoU7T ProjetoU7T.c )
+add_executable(ProjetoU7T ProjetoU7T.c ssd1306_i2c.c)
 
 pico_set_program_name(ProjetoU7T "ProjetoU7T")
 pico_set_program_version(ProjetoU7T "0.1")
