@@ -1,11 +1,58 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
 #include "pico/stdlib.h"
+#include "pico/binary_info.h"
+#include "ssd1306.h"
+#include "hardware/i2c.h"
 #include "hardware/adc.h"
 #include "hardware/pwm.h"
+
+#define I2C_SDA_OLED 14 // GP14 (SDA do OLED)
+#define I2C_SCL_OLED 15 // GP15 (SCL do OLED)
 
 #define IN_PIN 28    // GP28 (ADC2)
 #define LED_PIN 13   // GP13 (Saída PWM de teste (LED RGB))
 #define ADC_THRESHOLD 200 // Valor para ignorar o ruído do ADC
+
+void setupI2C(){ // Fazendo a configuração do I2C para o OLED
+    i2c_init(i2c1, SSD1306_I2C_CLK * 1000);
+    gpio_set_function(I2C_SDA_OLED, GPIO_FUNC_I2C);
+    gpio_set_function(I2C_SCL_OLED, GPIO_FUNC_I2C);
+    gpio_pull_up(I2C_SDA_OLED);
+    gpio_pull_up(I2C_SCL_OLED);
+
+    SSD1306_init();
+    struct render_area frame_area = {
+        start_col : 0,
+        end_col : SSD1306_WIDTH - 1,
+        start_page : 0,
+        end_page : SSD1306_NUM_PAGES - 1
+    };
+
+    calc_render_area_buflen(&frame_area);
+
+    uint8_t buf[SSD1306_BUF_LEN];
+    memset(buf, 0, SSD1306_BUF_LEN);
+    render(buf, &frame_area);
+
+    restart:
+
+    SSD1306_scroll(true);
+    sleep_ms(5000);
+    SSD1306_scroll(false);
+
+    char **text[] = outputOLED();
+
+    int y = 0;
+    for (uint i = 0; i < count_of(text); i++)
+    {
+        WriteString(buf, 5, y, text[i]);
+        y += 8;
+    }
+    render(buf, &frame_area);
+}
 
 void setup() {
     stdio_init_all();
@@ -22,8 +69,13 @@ void outputMatriz(){
 
 }
 
-void outputOLED(){
-
+char** outputOLED(){
+    static char *text[] = {
+        "   Bem-Vindo ",
+        " ao EmbarcaTech ",
+        "      2024 ",
+        "  SOFTEX/MCTI "};
+    return text;
 }
 
 void pwmBuzzer(){
@@ -46,6 +98,7 @@ void loopLeitura() {
 
 int main() {
     setup();
+    setupI2C();
     while (1) {
         loopLeitura();
     }

@@ -1479,7 +1479,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : " C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/cmsis C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2040/hardware_regs C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/cmsis C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2040/hardware_regs C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/cmsis C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2040/hardware_regs C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/cmsis C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2040/hardware_regs"
+			"value" : " C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/cmsis C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2040/hardware_regs C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/cmsis C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2040/hardware_regs C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/cmsis C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2040/hardware_regs C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/cmsis C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2040/hardware_regs C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/cmsis C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2040/hardware_regs"
 		},
 		{
 			"name" : "PICO_DOXYGEN_PATHS",

@@ -498,6 +498,10 @@
 				{
 					"backtrace" : 2,
 					"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_pwm/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_i2c/include"
 				}
 			],
 			"language" : "C",
@@ -568,7 +572,8 @@
 				66,
 				67,
 				68,
-				69
+				69,
+				70
 			]
 		},
 		{
@@ -958,6 +963,10 @@
 				{
 					"backtrace" : 2,
 					"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_pwm/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_i2c/include"
 				}
 			],
 			"language" : "ASM",
@@ -1379,6 +1388,10 @@
 				{
 					"backtrace" : 2,
 					"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_pwm/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_i2c/include"
 				}
 			],
 			"language" : "CXX",
@@ -2315,7 +2328,8 @@
 				66,
 				67,
 				68,
-				69
+				69,
+				70
 			]
 		},
 		{
@@ -2756,6 +2770,12 @@
 			"backtrace" : 2,
 			"compileGroupIndex" : 0,
 			"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_adc/adc.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_i2c/i2c.c",
 			"sourceGroupIndex" : 0
 		}
 	],
