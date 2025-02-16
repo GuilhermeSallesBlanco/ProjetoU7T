@@ -4,10 +4,11 @@
 2094	2170	7614387179452406	C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T/build/pico-sdk/src/rp2_common/boot_stage2/bs2_default_padded_checksummed.S	ba250cc6cf34e60e
 111	397	7614428587626594	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj	cb0661392feef40
 1789	2024	7614387175709852	pico-sdk/src/rp2_common/boot_stage2/bs2_default.elf	604e7f2aa3e49fd5
-38	568	7614428050610839	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/pico_stdlib/stdlib.c.obj	5ab1472030fdcfe3
+33	160	7614431601251311	CMakeFiles/ProjetoU7T.dir/ssd1306_i2c.c.obj	a4e96be681f6c92f
 2094	2170	7614387179452406	pico-sdk/src/rp2_common/boot_stage2/bs2_default_padded_checksummed.S	ba250cc6cf34e60e
-2024	2094	7614387178728323	pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin	ccb831eb289cbb45
 48	212	7614428254222304	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_vreg/vreg.c.obj	50a5f6a523e7e066
+2024	2094	7614387178728323	pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin	ccb831eb289cbb45
+38	568	7614428050610839	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/pico_stdlib/stdlib.c.obj	5ab1472030fdcfe3
 2024	2094	7614387178728323	C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T/build/pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin	ccb831eb289cbb45
 127	353	7614428254999166	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/pico_double/double_init_rom.c.obj	3420bde755d57168
 73	330	7614428050964140	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_irq/irq_handler_chain.S.obj	6e3275e8f8bc7713
@@ -20,7 +21,7 @@
 97	556	7614428051205150	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/common/pico_sync/critical_section.c.obj	e7957c615597608a
 103	606	7614428051266699	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/common/pico_time/time.c.obj	fe278bf4848cf63a
 74	398	7614428254474815	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/pico_runtime/runtime.c.obj	39198cedc5b3bf5d
-17	151	7614430620259307	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
+31	182	7614476163814030	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
 67	576	7614428050906772	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_irq/irq.c.obj	94b677d754bfdc8f
 117	572	7614428051404268	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_timer/timer.c.obj	c600196b577f854
 130	572	7614428051532148	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/common/pico_util/pheap.c.obj	37b23bbbbc6f5897
@@ -61,8 +62,8 @@
 270	459	7614428589226838	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/lib/tinyusb/src/class/midi/midi_device.c.obj	ff3cddb98e8d9b70
 125	417	7614428587778498	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/lib/tinyusb/src/device/usbd_control.c.obj	5016afca1a251e14
 280	520	7614428589327194	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/lib/tinyusb/src/class/msc/msc_device.c.obj	74edfbf438b3f006
-80	377	7614428587328110	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj	280df6cd668ebcb
 67	408	7614428587195742	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/pico_stdio_usb/reset_interface.c.obj	85c8895c3a1220db
+80	377	7614428587328110	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj	280df6cd668ebcb
 310	546	7614428589622523	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/lib/tinyusb/src/class/net/ecm_rndis_device.c.obj	a0ed54a8d9e8d163
 104	464	7614428587557431	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj	48f05046014528eb
 377	547	7614428590298113	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/lib/tinyusb/src/class/video/video_device.c.obj	66bd3e55e93136ac
@@ -75,27 +76,7 @@
 417	576	7614428590693574	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_adc/adc.c.obj	2f166245c79de077
 387	625	7614428590398159	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/lib/tinyusb/src/tusb.c.obj	18a284c031d4ca5b
 397	666	7614428590493423	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/lib/tinyusb/src/common/tusb_fifo.c.obj	6578d97296eabaa7
-154	406	7614393530458928	ProjetoU7T.elf	ecdf8557eb46a34a
+182	477	7614476165323786	ProjetoU7T.elf	ef7bacd7c23a1431
 427	626	7614428590788595	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_i2c/i2c.c.obj	dcf0683d80300127
-33	160	7614431601251311	CMakeFiles/ProjetoU7T.dir/ssd1306_i2c.c.obj	a4e96be681f6c92f
-160	592	7614431602521623	ProjetoU7T.elf	ef7bacd7c23a1431
-19	180	7614434998049296	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
-181	466	7614434999668037	ProjetoU7T.elf	ef7bacd7c23a1431
-32	174	7614435982841789	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
-174	590	7614435984250680	ProjetoU7T.elf	ef7bacd7c23a1431
-36	185	7614437577090140	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
-185	471	7614437578572181	ProjetoU7T.elf	ef7bacd7c23a1431
-31	171	7614438220800278	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
-172	461	7614438222197535	ProjetoU7T.elf	ef7bacd7c23a1431
-31	168	7614438885432405	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
-168	432	7614438886804784	ProjetoU7T.elf	ef7bacd7c23a1431
-33	174	7614451619076275	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
-174	445	7614451620497545	ProjetoU7T.elf	ef7bacd7c23a1431
-31	179	7614451887135775	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
-179	446	7614451888620923	ProjetoU7T.elf	ef7bacd7c23a1431
-30	173	7614453813482072	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
-174	448	7614453814913251	ProjetoU7T.elf	ef7bacd7c23a1431
-30	180	7614454199526105	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
-180	439	7614454201031384	ProjetoU7T.elf	ef7bacd7c23a1431
-30	162	7614454387362716	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
-162	432	7614454388688177	ProjetoU7T.elf	ef7bacd7c23a1431
+31	199	7614479641152660	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
+199	461	7614479642819286	ProjetoU7T.elf	ef7bacd7c23a1431

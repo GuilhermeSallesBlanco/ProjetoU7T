@@ -46,7 +46,7 @@ pico_enable_stdio_usb(ProjetoU7T 1)
 
 # Add the standard library to the build
 target_link_libraries(ProjetoU7T
-        pico_stdlib hardware_adc hardware_pwm hardware_i2c)
+        pico_stdlib hardware_adc hardware_pwm hardware_i2c hardware_timer)
 
 # Add the standard include files to the build
 target_include_directories(ProjetoU7T PRIVATE

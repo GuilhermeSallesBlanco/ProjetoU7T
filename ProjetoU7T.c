@@ -9,11 +9,20 @@
 #include "hardware/adc.h"
 #include "hardware/pwm.h"
 #include "ssd1306_i2c.h"
+#include "hardware/timer.h" 
 
 #define count_of(arr) (sizeof(arr) / sizeof((arr)[0])) 
 
 #define I2C_SDA_OLED 14 // GP14 (SDA do OLED)
 #define I2C_SCL_OLED 15 // GP15 (SCL do OLED)
+
+#define BUTTON_A 5 // Botão A (GP5)
+#define BUTTON_B 6 // Botão B (GP6)
+
+// Definições para realizar debouncing por temporizadores
+static uint32_t ultimoTempoA = 0;
+static uint32_t ultimoTempoB = 0;
+const uint32_t debounceDelay = 200; // 200ms de debounce
 
 #define IN_PIN 28    // GP28 (ADC2)
 #define LED_PIN 13   // GP13 (Saída PWM de teste (LED RGB))
@@ -85,11 +94,57 @@ OLEDText outputOLED(uint16_t botaoA, uint16_t botaoB) { // Função que retorna 
     }
 }
 
-void updateOLED(){
-    OLEDText oledText = outputOLED(valorA, valorB);
+void updateOLED(uint16_t botaoA, uint16_t botaoB) {
+    
+    struct render_area frame_area = {
+        start_col : 0,
+        end_col : SSD1306_WIDTH - 1,
+        start_page : 0,
+        end_page : SSD1306_NUM_PAGES - 1
+    };
+
+    calc_render_area_buflen(&frame_area);
+
+    uint8_t buf[SSD1306_BUF_LEN];
+    memset(buf, 0, SSD1306_BUF_LEN);
+    render(buf, &frame_area);
+
+    restart:
+
+    OLEDText oledText = outputOLED(botaoA, botaoB);
     char **text = oledText.text;
     size_t lines = oledText.lines;
+
+    int y = 0;
+    for (size_t i = 0; i < lines; i++) {
+        WriteString(buf, 5, y, text[i]);
+        y += 8;
+    }
+    render(buf, &frame_area);
 }
+
+static void apertarBotao(uint gpio, uint32_t events) {
+    // Primeiramente, obtém o valor de quando botão foi apertado
+    uint32_t tempoAtual = to_ms_since_boot(get_absolute_time());
+    // Para depois fazer um if e verificar se esse tempo está dentro do limite do debounce
+    // (200ms desde a última vez que o botão foi apertado)
+
+    // Interrupção (callback) para quando os botões forem apertados
+    // Quanto mais A: Maior o volume
+    // Quanto mais B: Menor o volume
+    // A soma de A e B sempre deve ser 5
+    if (gpio == BUTTON_A && valorA < 5 && (tempoAtual - ultimoTempoA) > debounceDelay) {
+        ultimoTempoA = tempoAtual; // Atualiza o tempo do último botão A
+        valorA++;
+        valorB--;
+    } else if (gpio == BUTTON_B && valorB < 5 && (tempoAtual - ultimoTempoB) > debounceDelay) {
+        ultimoTempoB = tempoAtual; // Atualiza o tempo do último botão B
+        valorB++;
+        valorA--;
+    }
+    updateOLED(valorA, valorB);
+} 
+    
 
 void setupI2C() { 
     // Fazendo a configuração do I2C para o OLED (baseado no código de exemplo do Github)
@@ -116,10 +171,12 @@ void setupI2C() {
     restart:
 
     SSD1306_scroll(true);
-    sleep_ms(5000);
+    sleep_ms(1500); // Diminui esse tempo para inicializar o OLED mais rapidamente
     SSD1306_scroll(false);
 
-    OLEDText oledText = outputOLED(valorA, valorB);
+    OLEDText oledText = outputOLED(5, 0);
+    valorA = 5;
+    valorB = 0;
     char **text = oledText.text;
     size_t lines = oledText.lines;
 
@@ -140,6 +197,17 @@ void setup() {
     uint slice_num = pwm_gpio_to_slice_num(LED_PIN);
     pwm_set_wrap(slice_num, 255);  
     pwm_set_enabled(slice_num, true);
+
+    gpio_init(BUTTON_A);
+    gpio_set_dir(BUTTON_A, GPIO_IN);
+    gpio_pull_up(BUTTON_A);
+
+    gpio_init(BUTTON_B);
+    gpio_set_dir(BUTTON_B, GPIO_IN);
+    gpio_pull_up(BUTTON_B);
+
+    gpio_set_irq_enabled_with_callback(BUTTON_A, GPIO_IRQ_EDGE_FALL, true, &apertarBotao);
+    gpio_set_irq_enabled(BUTTON_B, GPIO_IRQ_EDGE_FALL, true);
 }
 
 void outputMatriz(){
@@ -169,5 +237,6 @@ int main() {
     setupI2C();
     while (1) {
         loopLeitura();
+        printf("A: %d, B: %d\n", valorA, valorB);
     }
 }
