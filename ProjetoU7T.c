@@ -30,7 +30,7 @@ const uint32_t debounceDelay = 200; // 200ms de debounce
 
 #define IN_PIN 28    // GP28 (ADC2)
 #define LED_PIN 13   // GP13 (Saída PWM de teste (LED RGB))
-#define ADC_THRESHOLD 800 // Valor para ignorar o ruído do ADC
+#define ADC_THRESHOLD 60 // Valor para ignorar o ruído do ADC
 
 volatile static uint16_t valorA = 1;
 volatile static uint16_t valorB = 5;

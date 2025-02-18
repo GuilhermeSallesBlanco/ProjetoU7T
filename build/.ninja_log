@@ -157,3 +157,5 @@
 1183	1332	7615493831323523	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_i2c/i2c.c.obj	dcf0683d80300127
 1129	1359	7615493830778154	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/lib/tinyusb/src/common/tusb_fifo.c.obj	6578d97296eabaa7
 1359	1577	7615493833079202	ProjetoU7T.elf	ef7bacd7c23a1431
+32	180	7615494580102522	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	fd96a609cb8f4e50
+181	638	7615494581584312	ProjetoU7T.elf	ef7bacd7c23a1431
