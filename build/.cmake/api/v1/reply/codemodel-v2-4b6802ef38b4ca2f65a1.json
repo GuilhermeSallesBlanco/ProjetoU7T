@@ -19,7 +19,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				},
 				{
@@ -583,9 +584,9 @@
 					"source" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/boot_stage2",
 					"targetIndexes" : 
 					[
-						1,
 						2,
-						3
+						3,
+						4
 					]
 				},
 				{
@@ -846,7 +847,7 @@
 					"source" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/pico_cyw43_driver",
 					"targetIndexes" : 
 					[
-						4
+						5
 					]
 				},
 				{
@@ -1028,7 +1029,8 @@
 					"name" : "ProjetoU7T",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				},
 				{
@@ -1119,10 +1121,10 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						1,
 						2,
 						3,
-						4
+						4,
+						5
 					]
 				}
 			],
@@ -1131,8 +1133,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "ProjetoU7T::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ProjetoU7T-Debug-9cf8dbeb9a7d1831047e.json",
+					"jsonFile" : "target-ProjetoU7T-Debug-be245c08fad875452193.json",
 					"name" : "ProjetoU7T",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ProjetoU7T_ws2818b_pio_h::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ProjetoU7T_ws2818b_pio_h-Debug-1e6238f063457546b4b6.json",
+					"name" : "ProjetoU7T_ws2818b_pio_h",
 					"projectIndex" : 0
 				},
 				{

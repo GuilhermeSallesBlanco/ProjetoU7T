@@ -11,8 +11,15 @@
 #include "ssd1306_i2c.h"
 #include "hardware/timer.h" 
 #include "hardware/clocks.h"
+#include "hardware/pio.h"
+#include "ws2818b.pio.h"
 
 #define count_of(arr) (sizeof(arr) / sizeof((arr)[0])) 
+
+#define LED_COUNT 25 // Número de LEDs na matriz
+#define LED_MATRIX_PIN 7 // Pino de controle da matriz
+
+static uint32_t brilhoMaximo = 64;
 
 #define I2C_SDA_OLED 14 // GP14 (SDA do OLED)
 #define I2C_SCL_OLED 15 // GP15 (SCL do OLED)
@@ -23,18 +30,144 @@
 #define BUTTON_A 5 // Botão A (GP5)
 #define BUTTON_B 6 // Botão B (GP6)
 
+#define IN_PIN 28    // GP28 (ADC2)
+#define LED_PIN 13   // GP13 (Saída PWM de teste (LED RGB))
+#define ADC_THRESHOLD 60 // Valor para ignorar o ruído do ADC
+
 // Definições para realizar debouncing por temporizadores
 static uint32_t ultimoTempoA = 0;
 static uint32_t ultimoTempoB = 0;
 const uint32_t debounceDelay = 200; // 200ms de debounce
 
-#define IN_PIN 28    // GP28 (ADC2)
-#define LED_PIN 13   // GP13 (Saída PWM de teste (LED RGB))
-#define ADC_THRESHOLD 60 // Valor para ignorar o ruído do ADC
-
 volatile static uint16_t valorA = 1;
 volatile static uint16_t valorB = 5;
 volatile static float multiplicadorVolume = 1;
+
+// Definição de um pixel
+struct pixel{
+    uint8_t G, R, B;
+};
+
+typedef struct pixel pixel;
+typedef pixel sLED; // struct pixel -> sLED
+
+sLED leds[LED_COUNT]; // Array de LEDs
+
+// Variáveis para uso do PIO
+PIO np_pio;
+uint sm;
+
+// Função para inverter um byte (especificamente para inverter o código de intensidade dos LEDs)
+uint8_t inverter_byte(uint8_t byte_original){
+    uint8_t invertido = 0;
+    for (int i = 0; i < 8; i++){
+        invertido = invertido << 1;
+        invertido = (invertido | ((byte_original >> i) & 0x1));
+    }
+    return invertido;
+}
+
+void npInit(uint pin) {
+
+    // Cria programa PIO
+    uint offset = pio_add_program(pio0, &ws2818b_program);
+    np_pio = pio0;
+   
+    // Toma posse de uma máquina PIO
+    sm = pio_claim_unused_sm(np_pio, false);
+    if (sm < 0) {
+      np_pio = pio1;
+      sm = pio_claim_unused_sm(np_pio, true); 
+    }
+   
+    // Inicia programa na máquina PIO obtida
+    ws2818b_program_init(np_pio, sm, offset, pin, 800000.f);
+   
+    // Limpa buffer de pixels
+    for (uint i = 0; i < LED_COUNT; ++i) {
+      leds[i].R = 0;
+      leds[i].G = 0;
+      leds[i].B = 0;
+    }
+}
+
+// Atribui uma cor RGB a um LED
+void npSetLED(const uint index, const uint8_t r, const uint8_t g, const uint8_t b) {
+    uint8_t rI = inverter_byte(r); // Invertendo os comandos de intensidade dos LEDs
+    uint8_t gI = inverter_byte(g);
+    uint8_t bI = inverter_byte(b);
+
+    leds[index].R = rI; // Colocando os comandos inversos no array de LEDs
+    leds[index].G = gI;
+    leds[index].B = bI;
+}
+
+// Limpa o buffer dos pixels
+void npClear(){
+    for(uint i = 0; i < LED_COUNT; i++){
+        npSetLED(i, 0, 0, 0);
+    }
+}
+
+// Escreve os dados do buffer nos LEDs
+void npWrite(){
+    for(uint i = 0; i < LED_COUNT; i++){
+        pio_sm_put_blocking(np_pio, sm, leds[i].G);
+        pio_sm_put_blocking(np_pio, sm, leds[i].R);
+        pio_sm_put_blocking(np_pio, sm, leds[i].B);
+    }
+}
+
+void ativarLedADC(uint16_t val) {
+    // Valor máximo capturado pela antena: 2600
+    if (val > 2600) {
+        val = 2600;
+    }
+
+    // Definindo limites de brilho (o brilho aumenta de acordo com o valor do ADC)
+    uint8_t brilho1 = (brilhoMaximo * val) / 520;
+    uint8_t brilho2 = (brilhoMaximo * val) / 1040;
+    uint8_t brilho3 = (brilhoMaximo * val) / 1560;
+    uint8_t brilho4 = (brilhoMaximo * val) / 2080;
+    uint8_t brilho5 = (brilhoMaximo * val) / 2600;
+
+    // Limpa todos os LEDs
+    npClear();
+
+    if (val > 0 && val < 520) {
+        for (uint i = 0; i < 5; i++) {
+            npSetLED(i, brilho1, 0, 0); // Determinando brilho de acordo com valor do ADC
+        }
+    } else if (val >= 520 && val < 1040) {
+        for (uint j = 0; j < 5; j++) {
+            npSetLED(j, brilhoMaximo, 0, 0); // Se ele chegar na próxima linha, o brilho da linha anterior é maximizado
+        }
+        for (uint i = 5; i < 10; i++) {
+            npSetLED(i, brilho2, 0, 0);
+        }
+    } else if (val >= 1040 && val < 1560) {
+        for (uint j = 0; j < 10; j++) {
+            npSetLED(j, brilhoMaximo, 0, 0); // As linhas anteriores vão se juntando e ficando com o brilho máximo
+        }
+        for (uint i = 10; i < 15; i++) {
+            npSetLED(i, brilho3, 0, 0);
+        }
+    } else if (val >= 1560 && val < 2080) {
+        for (uint j = 0; j < 15; j++) {
+            npSetLED(j, brilhoMaximo, 0, 0);
+        }
+        for (uint i = 15; i < 20; i++) {
+            npSetLED(i, brilho4, 0, 0);
+        }
+    } else if (val >= 2080 && val <= 2600) {
+        for (uint j = 0; j < 20; j++) {
+            npSetLED(j, brilhoMaximo, 0, 0);
+        }
+        for (uint i = 20; i < 25; i++) {
+            npSetLED(i, brilho5, 0, 0);
+        }
+    }
+}
 
 typedef struct {
     char **text;
@@ -235,10 +368,9 @@ void setup() {
 
     gpio_set_irq_enabled_with_callback(BUTTON_A, GPIO_IRQ_EDGE_FALL, true, &apertarBotao);
     gpio_set_irq_enabled(BUTTON_B, GPIO_IRQ_EDGE_FALL, true);
-}
 
-void outputMatriz(){
-
+    npInit(LED_MATRIX_PIN);
+    npClear();
 }
 
 void pwmBuzzer() {
@@ -259,25 +391,27 @@ void pwmBuzzer() {
     pwm_set_wrap(slice2, wrap);
 
     // Define o nível PWM baseado no volume
-    uint16_t volume = (val * multiplicadorVolume / 4);
+    uint16_t volume = (val * multiplicadorVolume / 2);
     
     pwm_set_gpio_level(BUZZER_1, volume);
     pwm_set_gpio_level(BUZZER_2, volume);
 }
 
-
 void loopLeitura() {
     uint16_t val = adc_read(); // Lê o valor do ADC
 
-    if (val >= ADC_THRESHOLD) { // Se o valor do ADC for maior que 800, o sistema ativa. Isso é para evitar que o ruído presente no ADC interfira no sistema
+    if (val >= ADC_THRESHOLD) { // Se o valor do ADC for maior que 60, o sistema ativa. Isso é para evitar que o ruído presente no ADC interfira no sistema
         val = val > 4000 ? 4000 : val; // Limita o valor do ADC a 4000
-        val = (val - ADC_THRESHOLD) * (4095 - 1) / (4000 - ADC_THRESHOLD) + 1; // Mapeia 800-4000 para 1-4095
+        val = (val - ADC_THRESHOLD) * (4095 - 1) / (4000 - ADC_THRESHOLD) + 1; // Mapeia 60-4000 para 1-4095
         pwm_set_gpio_level(LED_PIN, val / 16); // Divide o valor do ADC por 16 para caber na resolução do PWM (0-255)
     } else {
         pwm_set_gpio_level(LED_PIN, 0);
-        val = 0;  // Qualquer valor abaixo de 800 é tratado como 0
+        val = 0;  // Qualquer valor abaixo de 60 é tratado como 0
     }
     pwmBuzzer(val); // Atualiza o volume do buzzer
+    printf("ADC: %d\n", val); // Imprime o valor do ADC
+    ativarLedADC(val); // Ativa os LEDs da matriz baseado no valor do ADC
+    npWrite(); // Escreve os dados do buffer nos LEDs
     sleep_ms(100);
 }
 
@@ -287,6 +421,5 @@ int main() {
     setupI2C();
     while (1) {
         loopLeitura();
-        printf("A: %d, B: %d, Volume: %.2f%%\n", valorA, valorB, multiplicadorVolume * 100);
     }
 }

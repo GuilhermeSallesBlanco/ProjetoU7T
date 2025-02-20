@@ -1,4 +1,5 @@
 C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T/build/CMakeFiles/ProjetoU7T.dir
+C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T/build/CMakeFiles/ProjetoU7T_ws2818b_pio_h.dir
 C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T/build/CMakeFiles/edit_cache.dir
 C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T/build/CMakeFiles/rebuild_cache.dir
 C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T/build/pico-sdk/CMakeFiles/edit_cache.dir

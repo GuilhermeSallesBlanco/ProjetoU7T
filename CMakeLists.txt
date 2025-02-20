@@ -34,8 +34,10 @@ project(ProjetoU7T C CXX ASM)
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
-
 add_executable(ProjetoU7T ProjetoU7T.c ssd1306_i2c.c)
+
+# Generate PIO header
+pico_generate_pio_header(ProjetoU7T ${CMAKE_CURRENT_LIST_DIR}/ws2818b.pio)
 
 pico_set_program_name(ProjetoU7T "ProjetoU7T")
 pico_set_program_version(ProjetoU7T "0.1")
@@ -46,7 +48,7 @@ pico_enable_stdio_usb(ProjetoU7T 1)
 
 # Add the standard library to the build
 target_link_libraries(ProjetoU7T
-        pico_stdlib hardware_adc hardware_pwm hardware_i2c hardware_timer hardware_clocks)
+        pico_stdlib hardware_adc hardware_pwm hardware_i2c hardware_timer hardware_clocks hardware_pio)
 
 # Add the standard include files to the build
 target_include_directories(ProjetoU7T PRIVATE

@@ -14,6 +14,7 @@
 			"target_link_libraries",
 			"pico_define_boot_stage2",
 			"add_dependencies",
+			"pico_generate_pio_header",
 			"target_compile_definitions",
 			"pico_set_program_name",
 			"pico_set_program_version",
@@ -24,6 +25,7 @@
 		[
 			"CMakeLists.txt",
 			"C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/boot_stage2/CMakeLists.txt",
+			"C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/tools/CMakeLists.txt",
 			"C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/common/pico_binary_info/CMakeLists.txt",
 			"C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common.cmake"
 		],
@@ -35,13 +37,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 38,
+				"line" : 37,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 48,
+				"line" : 50,
 				"parent" : 0
 			},
 			{
@@ -60,51 +62,69 @@
 				"parent" : 4
 			},
 			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 40,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 45,
+				"parent" : 6
+			},
+			{
 				"command" : 3,
 				"file" : 1,
 				"line" : 75,
 				"parent" : 4
 			},
 			{
-				"command" : 5,
-				"file" : 0,
-				"line" : 40,
-				"parent" : 0
-			},
-			{
-				"command" : 4,
-				"file" : 2,
-				"line" : 15,
-				"parent" : 7
-			},
-			{
 				"command" : 6,
 				"file" : 0,
-				"line" : 41,
+				"line" : 42,
 				"parent" : 0
 			},
 			{
-				"command" : 4,
-				"file" : 2,
-				"line" : 33,
+				"command" : 5,
+				"file" : 3,
+				"line" : 15,
 				"parent" : 9
 			},
 			{
 				"command" : 7,
 				"file" : 0,
-				"line" : 61,
+				"line" : 43,
 				"parent" : 0
 			},
 			{
-				"command" : 4,
+				"command" : 5,
 				"file" : 3,
-				"line" : 30,
+				"line" : 33,
 				"parent" : 11
 			},
 			{
 				"command" : 8,
 				"file" : 0,
-				"line" : 52,
+				"line" : 63,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 4,
+				"line" : 30,
+				"parent" : 13
+			},
+			{
+				"command" : 9,
+				"file" : 2,
+				"line" : 50,
+				"parent" : 6
+			},
+			{
+				"command" : 9,
+				"file" : 0,
+				"line" : 54,
 				"parent" : 0
 			}
 		]
@@ -285,11 +305,11 @@
 					"define" : "PICO_ON_DEVICE=1"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 10,
 					"define" : "PICO_PROGRAM_NAME=\"ProjetoU7T\""
 				},
 				{
-					"backtrace" : 10,
+					"backtrace" : 12,
 					"define" : "PICO_PROGRAM_VERSION_STRING=\"0.1\""
 				},
 				{
@@ -297,7 +317,7 @@
 					"define" : "PICO_RP2040_USB_DEVICE_UFRAME_FIX=1"
 				},
 				{
-					"backtrace" : 12,
+					"backtrace" : 14,
 					"define" : "PICO_TARGET_NAME=\"ProjetoU7T\""
 				},
 				{
@@ -308,7 +328,11 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 13,
+					"backtrace" : 15,
+					"path" : "C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T/build"
+				},
+				{
+					"backtrace" : 16,
 					"path" : "C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T"
 				},
 				{
@@ -502,6 +526,10 @@
 				{
 					"backtrace" : 2,
 					"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_i2c/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_pio/include"
 				}
 			],
 			"language" : "C",
@@ -574,7 +602,8 @@
 				68,
 				69,
 				70,
-				71
+				71,
+				72
 			]
 		},
 		{
@@ -751,11 +780,11 @@
 					"define" : "PICO_ON_DEVICE=1"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 10,
 					"define" : "PICO_PROGRAM_NAME=\"ProjetoU7T\""
 				},
 				{
-					"backtrace" : 10,
+					"backtrace" : 12,
 					"define" : "PICO_PROGRAM_VERSION_STRING=\"0.1\""
 				},
 				{
@@ -763,7 +792,7 @@
 					"define" : "PICO_RP2040_USB_DEVICE_UFRAME_FIX=1"
 				},
 				{
-					"backtrace" : 12,
+					"backtrace" : 14,
 					"define" : "PICO_TARGET_NAME=\"ProjetoU7T\""
 				},
 				{
@@ -774,7 +803,11 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 13,
+					"backtrace" : 15,
+					"path" : "C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T/build"
+				},
+				{
+					"backtrace" : 16,
 					"path" : "C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T"
 				},
 				{
@@ -968,6 +1001,10 @@
 				{
 					"backtrace" : 2,
 					"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_i2c/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_pio/include"
 				}
 			],
 			"language" : "ASM",
@@ -1176,11 +1213,11 @@
 					"define" : "PICO_ON_DEVICE=1"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 10,
 					"define" : "PICO_PROGRAM_NAME=\"ProjetoU7T\""
 				},
 				{
-					"backtrace" : 10,
+					"backtrace" : 12,
 					"define" : "PICO_PROGRAM_VERSION_STRING=\"0.1\""
 				},
 				{
@@ -1188,7 +1225,7 @@
 					"define" : "PICO_RP2040_USB_DEVICE_UFRAME_FIX=1"
 				},
 				{
-					"backtrace" : 12,
+					"backtrace" : 14,
 					"define" : "PICO_TARGET_NAME=\"ProjetoU7T\""
 				},
 				{
@@ -1199,7 +1236,11 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 13,
+					"backtrace" : 15,
+					"path" : "C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T/build"
+				},
+				{
+					"backtrace" : 16,
 					"path" : "C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T"
 				},
 				{
@@ -1393,6 +1434,10 @@
 				{
 					"backtrace" : 2,
 					"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_i2c/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_pio/include"
 				}
 			],
 			"language" : "CXX",
@@ -1413,7 +1458,11 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 6,
+			"backtrace" : 7,
+			"id" : "ProjetoU7T_ws2818b_pio_h::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 8,
 			"id" : "bs2_default_padded_checksummed_asm::@bc554eaed616d198a22d"
 		}
 	],
@@ -2331,7 +2380,8 @@
 				68,
 				69,
 				70,
-				71
+				71,
+				72
 			]
 		},
 		{
@@ -2784,6 +2834,12 @@
 			"backtrace" : 2,
 			"compileGroupIndex" : 0,
 			"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_i2c/i2c.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/Guilherme Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_pio/pio.c",
 			"sourceGroupIndex" : 0
 		}
 	],
