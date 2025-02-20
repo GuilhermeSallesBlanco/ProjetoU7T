@@ -391,7 +391,7 @@ void pwmBuzzer() {
     pwm_set_wrap(slice2, wrap);
 
     // Define o nível PWM baseado no volume
-    uint16_t volume = (val * multiplicadorVolume / 2);
+    uint16_t volume = (val * multiplicadorVolume);
     
     pwm_set_gpio_level(BUZZER_1, volume);
     pwm_set_gpio_level(BUZZER_2, volume);
