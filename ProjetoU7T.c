@@ -400,14 +400,16 @@ void pwmBuzzer() {
 void loopLeitura() {
     uint16_t val = adc_read(); // Lê o valor do ADC
 
-    if (val >= ADC_THRESHOLD) { // Se o valor do ADC for maior que 60, o sistema ativa. Isso é para evitar que o ruído presente no ADC interfira no sistema
+    // Testes com o LED RGB
+    /*if (val >= ADC_THRESHOLD) { // Se o valor do ADC for maior que 60, o sistema ativa. Isso é para evitar que o ruído presente no ADC interfira no sistema
         val = val > 4000 ? 4000 : val; // Limita o valor do ADC a 4000
         val = (val - ADC_THRESHOLD) * (4095 - 1) / (4000 - ADC_THRESHOLD) + 1; // Mapeia 60-4000 para 1-4095
         pwm_set_gpio_level(LED_PIN, val / 16); // Divide o valor do ADC por 16 para caber na resolução do PWM (0-255)
     } else {
         pwm_set_gpio_level(LED_PIN, 0);
         val = 0;  // Qualquer valor abaixo de 60 é tratado como 0
-    }
+    } */
+
     pwmBuzzer(val); // Atualiza o volume do buzzer
     printf("ADC: %d\n", val); // Imprime o valor do ADC
     ativarLedADC(val); // Ativa os LEDs da matriz baseado no valor do ADC
