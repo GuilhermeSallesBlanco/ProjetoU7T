@@ -422,4 +422,5 @@ int main() {
     while (1) {
         loopLeitura();
     }
+    return 0;
 }
