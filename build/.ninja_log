@@ -4,11 +4,11 @@
 188	239	7615493821817321	C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T/build/pico-sdk/src/rp2_common/boot_stage2/bs2_default_padded_checksummed.S	ba250cc6cf34e60e
 119	438	7617114119964303	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj	e00bb16d905f1333
 78	166	7615493820264008	pico-sdk/src/rp2_common/boot_stage2/bs2_default.elf	604e7f2aa3e49fd5
-174	381	7617113548300867	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/pico_stdlib/stdlib.c.obj	97ed270e12eaad5f
-170	431	7617113548268822	CMakeFiles/ProjetoU7T.dir/ssd1306_i2c.c.obj	eaf16eaa4ff59a6e
 188	239	7615493821817321	pico-sdk/src/rp2_common/boot_stage2/bs2_default_padded_checksummed.S	ba250cc6cf34e60e
-387	581	7617113550425097	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_vreg/vreg.c.obj	f3f21091db4acf9b
+170	431	7617113548268822	CMakeFiles/ProjetoU7T.dir/ssd1306_i2c.c.obj	eaf16eaa4ff59a6e
 166	188	7615493821338197	pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin	ccb831eb289cbb45
+387	581	7617113550425097	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_vreg/vreg.c.obj	f3f21091db4acf9b
+174	381	7617113548300867	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/pico_stdlib/stdlib.c.obj	97ed270e12eaad5f
 166	188	7615493821338197	C:/Users/Guilherme Blanco/Desktop/College/Embarcatech/Trabalho Final/Projeto U7/ProjetoU7T/build/pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin	ccb831eb289cbb45
 526	679	7617113551824281	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/pico_double/double_init_rom.c.obj	76173451a16d5de5
 198	332	7617113548533862	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_irq/irq_handler_chain.S.obj	3e00a97ba9c98e81
@@ -81,3 +81,11 @@
 451	639	7617114123274756	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_i2c/i2c.c.obj	17a98ed949d820be
 457	674	7617114123339921	CMakeFiles/ProjetoU7T.dir/C_/Users/Guilherme_Blanco/.pico-sdk/sdk/1.5.1/src/rp2_common/hardware_pio/pio.c.obj	46f8c86a3d7e9010
 18	166	7617113548200455	ws2818b.pio.h	1d178168ff3224cf
+51	1334	7620579837008690	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	d18cd298082d02a7
+1336	2745	7620579849864307	ProjetoU7T.elf	1ca0311d53750439
+17	200	7620581656704648	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	d18cd298082d02a7
+200	424	7620581658527432	ProjetoU7T.elf	1ca0311d53750439
+45	521	7620607390170434	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	d18cd298082d02a7
+521	1551	7620607394930614	ProjetoU7T.elf	1ca0311d53750439
+21	205	7620628103102285	CMakeFiles/ProjetoU7T.dir/ProjetoU7T.c.obj	d18cd298082d02a7
+205	591	7620628104937308	ProjetoU7T.elf	1ca0311d53750439

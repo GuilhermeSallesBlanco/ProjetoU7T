@@ -353,10 +353,10 @@ void setup() {
     adc_init();
     adc_gpio_init(IN_PIN);  // Inicializa o ADC no GP28
     adc_select_input(2);    // Seleciona o ADC2 para o GP28
-    gpio_set_function(LED_PIN, GPIO_FUNC_PWM); // Configura o pino do LED RGB (de teste) para PWM
-    uint slice_num = pwm_gpio_to_slice_num(LED_PIN);
-    pwm_set_wrap(slice_num, 255);  
-    pwm_set_enabled(slice_num, true);
+    //gpio_set_function(LED_PIN, GPIO_FUNC_PWM); // Configura o pino do LED RGB (de teste) para PWM
+    //uint slice_num = pwm_gpio_to_slice_num(LED_PIN);
+    //pwm_set_wrap(slice_num, 255);  
+    //pwm_set_enabled(slice_num, true);
 
     gpio_init(BUTTON_A);
     gpio_set_dir(BUTTON_A, GPIO_IN);
@@ -400,15 +400,14 @@ void pwmBuzzer() {
 void loopLeitura() {
     uint16_t val = adc_read(); // Lê o valor do ADC
 
-    // Testes com o LED RGB
-    /*if (val >= ADC_THRESHOLD) { // Se o valor do ADC for maior que 60, o sistema ativa. Isso é para evitar que o ruído presente no ADC interfira no sistema
+    if (val >= ADC_THRESHOLD) { // Se o valor do ADC for maior que 60, o sistema ativa. Isso é para evitar que o ruído presente no ADC interfira no sistema
         val = val > 4000 ? 4000 : val; // Limita o valor do ADC a 4000
         val = (val - ADC_THRESHOLD) * (4095 - 1) / (4000 - ADC_THRESHOLD) + 1; // Mapeia 60-4000 para 1-4095
-        pwm_set_gpio_level(LED_PIN, val / 16); // Divide o valor do ADC por 16 para caber na resolução do PWM (0-255)
+        //pwm_set_gpio_level(LED_PIN, val / 16); // Divide o valor do ADC por 16 para caber na resolução do PWM (0-255)
     } else {
         pwm_set_gpio_level(LED_PIN, 0);
         val = 0;  // Qualquer valor abaixo de 60 é tratado como 0
-    } */
+    } 
 
     pwmBuzzer(val); // Atualiza o volume do buzzer
     printf("ADC: %d\n", val); // Imprime o valor do ADC
