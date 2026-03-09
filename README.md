@@ -1,5 +1,6 @@
 # Introdução
 Este projeto foi elaborado para a conclusão da primeira fase do programa de Residência Tecnológica em Sistemas Embarcados _Embarcatech_. Por conta dele, fiquei em 6º lugar dentre os 471 participantes do projeto que se encontravam em Brasília.
+
 <img width="639" height="679" alt="image" src="https://github.com/user-attachments/assets/79d7d0e3-abc4-4d48-ac98-4fba3a0f8def" />
 
 # Descrição do projeto
